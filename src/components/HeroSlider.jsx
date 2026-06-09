@@ -68,7 +68,7 @@ export default function HeroSlider() {
   }
 
   return (
-    <div className="relative h-screen min-h-[600px] max-h-[800px] overflow-hidden">
+    <div className="relative h-screen min-h-[500px] sm:min-h-[600px] max-h-[800px] overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -83,11 +83,11 @@ export default function HeroSlider() {
               animation: index === currentSlide ? 'zoomIn 10s ease-out' : 'none'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent md:bg-gradient-to-r" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           
           <div className="relative h-full flex items-center">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 sm:px-6">
               <div className="max-w-3xl">
                 <div
                   className={`transition-all duration-700 ${
@@ -96,21 +96,21 @@ export default function HeroSlider() {
                       : 'translate-y-10 opacity-0'
                   }`}
                 >
-                  <span className="inline-block bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-pulse">
+                  <span className="inline-block bg-primary-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 animate-pulse">
                     {slide.subtitle}
                   </span>
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                     {slide.title}
                   </h1>
-                  <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 sm:mb-8 leading-relaxed">
                     {slide.description}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 group">
-                      <Play className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                      <span>{slide.cta}</span>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <button className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 group">
+                      <Play className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                      <span className="text-sm sm:text-base">{slide.cta}</span>
                     </button>
-                    <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
+                    <button className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
                       Watch Demo
                     </button>
                   </div>
@@ -123,41 +123,31 @@ export default function HeroSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-3 rounded-full text-white transition-all duration-300 hover:scale-110 z-10"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 sm:p-3 rounded-full text-white transition-all duration-300 hover:scale-110 z-10"
       >
-        <ChevronLeft className="h-6 w-6" />
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-3 rounded-full text-white transition-all duration-300 hover:scale-110 z-10"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 sm:p-3 rounded-full text-white transition-all duration-300 hover:scale-110 z-10"
       >
-        <ChevronRight className="h-6 w-6" />
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 sm:space-x-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-3 rounded-full transition-all duration-300 ${
+            className={`h-2.5 sm:h-3 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? 'w-12 bg-primary-600'
-                : 'w-3 bg-white/50 hover:bg-white/80'
+                ? 'w-8 sm:w-12 bg-primary-600'
+                : 'w-2.5 sm:w-3 bg-white/50 hover:bg-white/80'
             }`}
           />
         ))}
       </div>
 
-      <style jsx>{`
-        @keyframes zoomIn {
-          from {
-            transform: scale(1);
-          }
-          to {
-            transform: scale(1.1);
-          }
-        }
-      `}</style>
     </div>
   )
 }
